@@ -1,0 +1,14 @@
+# Cosmic Simulator - Python Dependencies
+#
+# This project uses only Python standard library modules.
+# No external packages need to be installed via pip.
+#
+# Required Python version: 3.6+
+#
+# The curses module is included in Python's standard library on Unix-like systems
+# (Linux, macOS, WSL). For Windows, use WSL or install windows-curses:
+#
+# For Windows only (if not using WSL):
+# windows-curses>=2.3.0
+#
+# That's it! The simulator is dependency-free for Unix systems.
