@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InvoiceQuick - Professional Invoice Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">
+                <h1>💰 InvoiceQuick</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#" id="dashboardLink" class="active">Dashboard</a>
+                <a href="#" id="newInvoiceLink">New Invoice</a>
+                <a href="#" id="clientsLink">Clients</a>
+                <a href="#" id="pricingLink">Pricing</a>
+            </div>
+        </nav>
+
+        <!-- Dashboard View -->
+        <div id="dashboardView" class="view active">
+            <div class="header">
+                <h2>Your Invoices</h2>
+                <button class="btn-primary" id="createInvoiceBtn">+ Create Invoice</button>
+            </div>
+
+            <div class="usage-banner">
+                <p>Free Plan: <strong><span id="invoiceCount">0</span>/5</strong> invoices used this month</p>
+                <button class="btn-upgrade" id="upgradeBtn">Upgrade to Unlimited - $10/month</button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Invoices</h3>
+                    <p class="stat-number" id="totalInvoices">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Paid</h3>
+                    <p class="stat-number stat-paid" id="paidInvoices">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Pending</h3>
+                    <p class="stat-number stat-pending" id="pendingInvoices">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Revenue</h3>
+                    <p class="stat-number" id="totalRevenue">$0</p>
+                </div>
+            </div>
+
+            <div class="invoice-list" id="invoiceList">
+                <p class="empty-state">No invoices yet. Create your first invoice to get started!</p>
+            </div>
+        </div>
+
+        <!-- New Invoice View -->
+        <div id="invoiceView" class="view">
+            <div class="header">
+                <h2>Create Invoice</h2>
+            </div>
+
+            <div class="invoice-form-container">
+                <div class="form-section">
+                    <form id="invoiceForm">
+                        <div class="form-group">
+                            <label>Your Business Name</label>
+                            <input type="text" id="businessName" required placeholder="Your Company LLC">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Your Email</label>
+                                <input type="email" id="businessEmail" required placeholder="you@company.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Your Phone</label>
+                                <input type="tel" id="businessPhone" placeholder="+1 (555) 123-4567">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Your Address</label>
+                            <textarea id="businessAddress" rows="2" placeholder="123 Business St, City, State, ZIP"></textarea>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label>Client Name</label>
+                            <input type="text" id="clientName" required placeholder="Client Company Inc">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Client Email</label>
+                            <input type="email" id="clientEmail" required placeholder="client@company.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Client Address</label>
+                            <textarea id="clientAddress" rows="2" placeholder="456 Client Ave, City, State, ZIP"></textarea>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Invoice Number</label>
+                                <input type="text" id="invoiceNumber" required placeholder="INV-001">
+                            </div>
+                            <div class="form-group">
+                                <label>Invoice Date</label>
+                                <input type="date" id="invoiceDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Due Date</label>
+                                <input type="date" id="dueDate" required>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group">
+                            <label>Line Items</label>
+                            <div id="lineItems">
+                                <div class="line-item">
+                                    <input type="text" placeholder="Description" class="item-description" required>
+                                    <input type="number" placeholder="Qty" class="item-quantity" value="1" min="1" required>
+                                    <input type="number" placeholder="Rate" class="item-rate" step="0.01" min="0" required>
+                                    <span class="item-total">$0.00</span>
+                                    <button type="button" class="btn-remove" onclick="removeLineItem(this)">×</button>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-secondary" id="addLineItemBtn">+ Add Line Item</button>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Notes (Optional)</label>
+                            <textarea id="invoiceNotes" rows="3" placeholder="Payment terms, thank you message, etc."></textarea>
+                        </div>
+
+                        <div class="invoice-total">
+                            <h3>Total: <span id="invoiceTotal">$0.00</span></h3>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" id="previewBtn">Preview</button>
+                            <button type="submit" class="btn-primary">Save & Generate PDF</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="preview-section" id="previewSection" style="display: none;">
+                    <div class="invoice-preview" id="invoicePreview"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clients View -->
+        <div id="clientsView" class="view">
+            <div class="header">
+                <h2>Clients</h2>
+                <button class="btn-primary" id="addClientBtn">+ Add Client</button>
+            </div>
+            <div class="client-list" id="clientList">
+                <p class="empty-state">No clients yet. Add a client to get started!</p>
+            </div>
+        </div>
+
+        <!-- Pricing View -->
+        <div id="pricingView" class="view">
+            <div class="header">
+                <h2>Pricing</h2>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <p class="price">$0<span>/month</span></p>
+                    <ul class="features">
+                        <li>✓ 5 invoices per month</li>
+                        <li>✓ PDF export</li>
+                        <li>✓ Basic templates</li>
+                        <li>✓ Client management</li>
+                        <li>× Custom branding</li>
+                        <li>× Unlimited invoices</li>
+                        <li>× Email reminders</li>
+                    </ul>
+                    <button class="btn-secondary" disabled>Current Plan</button>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="badge">BEST VALUE</div>
+                    <h3>Pro</h3>
+                    <p class="price">$10<span>/month</span></p>
+                    <ul class="features">
+                        <li>✓ Unlimited invoices</li>
+                        <li>✓ PDF export</li>
+                        <li>✓ Premium templates</li>
+                        <li>✓ Client management</li>
+                        <li>✓ Custom branding</li>
+                        <li>✓ Auto-save drafts</li>
+                        <li>✓ Email reminders</li>
+                        <li>✓ Payment tracking</li>
+                        <li>✓ Analytics dashboard</li>
+                    </ul>
+                    <button class="btn-primary" id="upgradeToPro">Upgrade Now</button>
+                </div>
+            </div>
+
+            <div class="pricing-info">
+                <h3>Why Upgrade?</h3>
+                <p>If you send more than 5 invoices per month, Pro pays for itself immediately. Most freelancers save hours of time and never worry about invoice limits again.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
