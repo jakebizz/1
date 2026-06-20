@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdLine - Advertise to 10M+ Developers</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #2d3748;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature {
+            background: #f7fafc;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .feature p {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        .pricing {
+            background: #f7fafc;
+            padding: 80px 20px;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            border-color: #667eea;
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .pricing-card.featured {
+            border-color: #667eea;
+            border-width: 3px;
+            transform: scale(1.05);
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .plan-price small {
+            font-size: 1rem;
+            color: #718096;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            color: #4a5568;
+        }
+
+        .plan-features li:before {
+            content: "✓ ";
+            color: #48bb78;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .testimonials {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #2d3748;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 60px 20px 30px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .how-it-works {
+            background: white;
+            padding: 80px 20px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .step h3 {
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+
+        .step p {
+            color: #4a5568;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            .stats {
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>💰 Reach 10M+ Developers<br>Where They Code</h1>
+        <p>The world's first in-IDE advertising platform</p>
+        <a href="#pricing" class="cta-button">Start Advertising Today</a>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">10M+</div>
+                <div class="stat-label">Active Developers</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">50M+</div>
+                <div class="stat-label">Daily Impressions</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">4.2%</div>
+                <div class="stat-label">Average CTR</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How AdLine Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Install Extension</h3>
+                    <p>Developers install AdLine in VS Code and opt-in to monetization</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Ads Display</h3>
+                    <p>Your sponsored messages appear in the status bar during AI processing</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Results</h3>
+                    <p>Track impressions, clicks, and conversions in real-time</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div>Everyone Wins</div>
+                    <p>Developers earn 50% revenue share, you get high-intent traffic</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="container">
+        <h2 class="section-title">Why Advertise on AdLine?</h2>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Hyper-Targeted</h3>
+                <p>Reach developers actively using AI coding tools. No wasted impressions on non-technical audiences.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>High Engagement</h3>
+                <p>4.2% average CTR - 10x higher than banner ads. Developers see your message at peak focus moments.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>Real-Time Analytics</h3>
+                <p>Track every impression, click, and conversion. Optimize campaigns with live data and A/B testing.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💎</div>
+                <h3>Premium Audience</h3>
+                <p>Average developer salary: $120k+. These are decision-makers buying tools, services, and platforms.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <h3>Brand Safe</h3>
+                <p>Professional environment with strict quality guidelines. Your brand appears alongside cutting-edge AI tools.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚙️</div>
+                <h3>Easy Setup</h3>
+                <p>Launch campaigns in minutes. No complex integration, just upload your ad and set your budget.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="pricing" id="pricing">
+        <h2 class="section-title">Simple, Performance-Based Pricing</h2>
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <div class="plan-name">Pay Per Impression</div>
+                <div class="plan-price">$2<small>/1000 impressions</small></div>
+                <ul class="plan-features">
+                    <li>Guaranteed visibility</li>
+                    <li>Status bar placement</li>
+                    <li>Basic analytics</li>
+                    <li>Geographic targeting</li>
+                    <li>Minimum $100/month</li>
+                </ul>
+                <a href="mailto:advertise@adline.dev?subject=CPM%20Plan" class="cta-button">Get Started</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="plan-name">Pay Per Click</div>
+                <div class="plan-price">$0.50<small>/click</small></div>
+                <ul class="plan-features">
+                    <li>Only pay for engagement</li>
+                    <li>Premium placement</li>
+                    <li>Advanced analytics</li>
+                    <li>A/B testing included</li>
+                    <li>Conversion tracking</li>
+                    <li>Dedicated support</li>
+                </ul>
+                <a href="mailto:advertise@adline.dev?subject=CPC%20Plan" class="cta-button">Get Started</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="plan-name">Enterprise</div>
+                <div class="plan-price">Custom</div>
+                <ul class="plan-features">
+                    <li>Exclusive partnerships</li>
+                    <li>API access</li>
+                    <li>Custom integrations</li>
+                    <li>White-label options</li>
+                    <li>Dedicated account manager</li>
+                    <li>Custom reporting</li>
+                </ul>
+                <a href="mailto:advertise@adline.dev?subject=Enterprise%20Plan" class="cta-button">Contact Sales</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="testimonials">
+        <h2 class="section-title">What Advertisers Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    "AdLine helped us reach 50,000 developers in our first month. The CTR is insane compared to traditional dev-focused ads. Best ROI we've seen."
+                </div>
+                <div class="testimonial-author">— Sarah Chen, CMO at DevTools Inc</div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    "Finally, a way to advertise directly to developers while they're in their workflow. The engagement quality is unmatched."
+                </div>
+                <div class="testimonial-author">— Marcus Rodriguez, Growth Lead at CodePlatform</div>
+            </div>
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    "We tried everything - GitHub ads, Stack Overflow, Reddit. AdLine converted 3x better at half the cost. It's a no-brainer."
+                </div>
+                <div class="testimonial-author">— Emma Thompson, Founder of APIService</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="hero" style="padding: 80px 20px;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Ready to Reach Developers Where They Work?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 40px;">Join 500+ companies advertising on AdLine</p>
+        <a href="mailto:advertise@adline.dev?subject=Get%20Started%20with%20AdLine" class="cta-button">Start Your Campaign</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-links">
+            <a href="#pricing">Pricing</a>
+            <a href="mailto:advertise@adline.dev">Advertise</a>
+            <a href="mailto:support@adline.dev">Support</a>
+            <a href="/developers">For Developers</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+        </div>
+        <p style="opacity: 0.7;">&copy; 2026 AdLine. All rights reserved.</p>
+        <p style="opacity: 0.6; margin-top: 10px; font-size: 0.9rem;">
+            Reach developers directly in their IDE • 50% revenue share • Real-time analytics
+        </p>
+    </div>
+</body>
+</html>
