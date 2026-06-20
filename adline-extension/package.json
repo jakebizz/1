@@ -1,0 +1,72 @@
+{
+  "name": "adline",
+  "displayName": "AdLine - Monetize Your Code Time",
+  "description": "Earn passive income by displaying ads in your status bar during AI processing",
+  "version": "1.0.0",
+  "publisher": "your-publisher-name",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "AdLine",
+      "properties": {
+        "adline.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable AdLine monetization"
+        },
+        "adline.userId": {
+          "type": "string",
+          "default": "",
+          "description": "Your AdLine user ID for revenue tracking"
+        },
+        "adline.refreshInterval": {
+          "type": "number",
+          "default": 30000,
+          "description": "Ad refresh interval in milliseconds"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "adline.enable",
+        "title": "AdLine: Enable Monetization"
+      },
+      {
+        "command": "adline.disable",
+        "title": "AdLine: Disable Monetization"
+      },
+      {
+        "command": "adline.showEarnings",
+        "title": "AdLine: Show Earnings"
+      },
+      {
+        "command": "adline.configure",
+        "title": "AdLine: Configure Account"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^5.0.0",
+    "vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}
